@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shoe_e_commerce/view/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -21,13 +22,49 @@ class SplashScreen extends StatelessWidget {
               RichText(
                   text: TextSpan(children: [
                 TextSpan(
-                    text: 'Bring power to Your Steps...',
+                    text: ' SHOE RACK\n',
                     style: GoogleFonts.aBeeZee(
-                        color: Colors.white,
+                        color: Colors.yellow,
                         letterSpacing: .5,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold))
-              ]))
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold)),
+                const WidgetSpan(
+                  child: SizedBox(height: 10),
+                ),
+                TextSpan(
+                    text: 'Bring power to Your Steps...',
+                    style: GoogleFonts.abel(color: Colors.white, fontSize: 17))
+              ])),
+              const SizedBox(height: 60),
+              SizedBox(
+                height: mediaQuery.height * 0.1,
+                width: mediaQuery.width * 0.8,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow,
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  LoginScreen()));
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'GET STARTED',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                        )
+                      ],
+                    )),
+              )
             ],
           ))
         ],
