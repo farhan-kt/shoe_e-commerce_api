@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/login_provider.dart';
 import 'package:shoe_e_commerce/view/sign_up_screen.dart';
+import 'package:shoe_e_commerce/widget/bottom_bar.dart';
 import 'package:shoe_e_commerce/widget/textformfield_widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -63,6 +64,11 @@ class LoginScreen extends StatelessWidget {
                                 backgroundColor: Colors.yellow,
                               ),
                               onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BottomBar()),
+                                    (route) => false);
                                 if (formKey.currentState!.validate()) {}
                               },
                               child: const Text(

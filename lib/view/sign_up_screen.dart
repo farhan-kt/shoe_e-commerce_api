@@ -25,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.yellow,
                     ),
@@ -37,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
               ],
             ),
             Lottie.asset(
-              'assets/Animation - login_screen.json',
+              'assets/sign up.json',
               height: mediaQuery.height * 0.3,
               fit: BoxFit.cover,
             ),
@@ -88,7 +88,7 @@ class SignUpScreen extends StatelessWidget {
                               labelText: 'Password',
                               obscureText: true,
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
@@ -104,7 +104,7 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                           ],
                         ),
                       ),
