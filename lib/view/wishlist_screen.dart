@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_e_commerce/widget/cart_item.dart';
 import 'package:shoe_e_commerce/widget/text_widget.dart';
+import 'package:shoe_e_commerce/widget/wishlist_item.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+class WishListScreen extends StatelessWidget {
+  const WishListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,27 +13,7 @@ class CartScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back)),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      textAbel(data: 'Cart', size: 20, weight: FontWeight.bold),
-                      SizedBox(width: 8),
-                      Icon(
-                        Icons.shopping_cart_outlined,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            textAbel(data: 'WishList', size: 20, weight: FontWeight.bold),
             const SizedBox(height: 20),
             Expanded(
               child: Container(
@@ -46,7 +26,7 @@ class CartScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return const CartItem();
+                      return const WishListItem();
                     },
                   )),
             ),

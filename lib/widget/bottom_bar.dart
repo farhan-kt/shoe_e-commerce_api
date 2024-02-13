@@ -1,14 +1,20 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/bottom_bar_provider.dart';
-import 'package:shoe_e_commerce/view/cart_screen.dart';
+import 'package:shoe_e_commerce/view/wishlist_screen.dart';
 import 'package:shoe_e_commerce/view/home_screen.dart';
 import 'package:shoe_e_commerce/view/setting_screen.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({super.key});
 
-  List screens = [HomeScreen(), CartScreen(), SettingScreen()];
+  List screens = [
+    const HomeScreen(),
+    const WishListScreen(),
+    const SettingScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +47,10 @@ class BottomBar extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.shopping_cart,
+                    Icons.favorite_outlined,
                     size: 25,
                   ),
-                  label: 'ᶜᵃʳᵗ',
+                  label: 'ʷᶦˢʰˡᶦˢᵗ',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(

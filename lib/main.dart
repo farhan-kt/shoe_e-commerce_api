@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/bottom_bar_provider.dart';
-import 'package:shoe_e_commerce/controller/login_provider.dart';
-import 'package:shoe_e_commerce/view/home_screen.dart';
-import 'package:shoe_e_commerce/view/splash_screen.dart';
-import 'package:shoe_e_commerce/widget/bottom_bar.dart';
+import 'package:shoe_e_commerce/controller/home_provider.dart';
+import 'package:shoe_e_commerce/controller/user_provider.dart';
+import 'package:shoe_e_commerce/view/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
-        ChangeNotifierProvider(create: (context) => BottomProvider())
+        ChangeNotifierProvider(create: (context) => BottomProvider()),
+        ChangeNotifierProvider(create: (context) => HomeProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
             primaryColor: const Color(0xFFFFBD73),
             scaffoldBackgroundColor: const Color(0xFF202020)),
-        // home: const SplashScreen(),
-        home: BottomBar(),
+        home: const SplashScreen(),
+        // home: BottomBar(),
       ),
     );
   }

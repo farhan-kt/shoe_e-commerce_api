@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_e_commerce/controller/login_provider.dart';
+import 'package:shoe_e_commerce/controller/user_provider.dart';
 import 'package:shoe_e_commerce/view/sign_up_screen.dart';
 import 'package:shoe_e_commerce/widget/bottom_bar.dart';
 import 'package:shoe_e_commerce/widget/textformfield_widget.dart';

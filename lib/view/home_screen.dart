@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shoe_e_commerce/view/cart_screen.dart';
 import 'package:shoe_e_commerce/widget/text_widget.dart';
 
@@ -37,32 +35,32 @@ class HomeScreen extends StatelessWidget {
                         suffixIcon: const Icon(Icons.search)),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Container(
                   height: 46,
                   width: 46,
                   decoration: BoxDecoration(
-                      color: Color(0xFF202020),
+                      color: const Color(0xFF202020),
                       shape: BoxShape.circle,
                       boxShadow: <BoxShadow>[
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.6), blurRadius: 5)
                       ]),
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(4),
                   child: IconButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CartScreen()));
+                                builder: (context) => const CartScreen()));
                       },
-                      icon: Icon(Icons.shopping_cart)),
+                      icon: const Icon(Icons.shopping_cart_outlined)),
                 )
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             textAmaranth(data: "HOME", size: 30, weight: FontWeight.w800),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   return Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Column(
@@ -101,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -115,8 +113,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(
-                                  Icons.shopping_cart_rounded,
+                                icon: const Icon(
+                                  Icons.favorite_outline,
                                   color: Colors.black,
                                 ))
                           ],
