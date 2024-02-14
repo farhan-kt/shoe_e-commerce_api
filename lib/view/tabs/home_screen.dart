@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_e_commerce/view/cart_screen.dart';
+import 'package:shoe_e_commerce/view/pages/cart_screen.dart';
 import 'package:shoe_e_commerce/widget/text_widget.dart';
 
 class HomeScreen extends StatelessWidget {

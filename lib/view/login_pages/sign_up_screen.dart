@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_e_commerce/controller/user_provider.dart';
+import 'package:shoe_e_commerce/model/user_model.dart';
+import 'package:shoe_e_commerce/widget/normal_widgets.dart';
 import 'package:shoe_e_commerce/widget/textformfield_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -14,6 +18,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final userProvider = Provider.of<UserProvider>(context, listen: false);
     Size mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
@@ -93,8 +98,10 @@ class SignUpScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
                               ),
-                              onPressed: () {
-                                if (formKey2.currentState!.validate()) {}
+                              onPressed: () async {
+                                if (formKey2.currentState!.validate()) {
+                                  await createUser(context);
+                                }
                               },
                               child: const Text(
                                 'Sign Up',
@@ -117,5 +124,19 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  createUser(context) async {
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
+    final userInfo = UserModel(
+      name: getProvider.nameController.text.toString(),
+      email: getProvider.emailController.text.toString(),
+      username: getProvider.usernameController.text.toString(),
+      password: getProvider.passwordController.text.toString(),
+    );
+    await getProvider.createUser(userInfo);
+    if (getProvider.createdStatusCode == "201") {
+      clearControllers(getProvider);
+    } else {}
   }
 }

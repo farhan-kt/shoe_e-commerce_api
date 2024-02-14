@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shoe_e_commerce/view/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shoe_e_commerce/view/login_pages/login_screen.dart';
+import 'package:shoe_e_commerce/widget/bottom_bar.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -44,10 +46,7 @@ class SplashScreen extends StatelessWidget {
                       backgroundColor: Colors.yellow,
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  LoginScreen()));
+                      checkUserLoggedIn(context);
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,5 +69,21 @@ class SplashScreen extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  checkUserLoggedIn(context) async {
+    final sharedPrfs = await SharedPreferences.getInstance();
+    final userLoggedIn = sharedPrfs.getBool('savekey');
+    if (userLoggedIn == null || userLoggedIn == false) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ));
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => BottomBar(),
+      ));
+    }
   }
 }

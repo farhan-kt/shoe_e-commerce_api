@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/bottom_bar_provider.dart';
-import 'package:shoe_e_commerce/view/wishlist_screen.dart';
-import 'package:shoe_e_commerce/view/home_screen.dart';
-import 'package:shoe_e_commerce/view/setting_screen.dart';
+import 'package:shoe_e_commerce/view/tabs/wishlist_screen.dart';
+import 'package:shoe_e_commerce/view/tabs/home_screen.dart';
+import 'package:shoe_e_commerce/view/tabs/setting_screen.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({super.key});

@@ -1,26 +1,16 @@
 class UserModel {
   String? name;
-  String? email;
   String? username;
+  String? email;
   String? password;
 
-  UserModel({this.username, this.password, this.email, this.name});
-
+  UserModel({this.username, this.email, this.password, this.name});
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> userInfo = {
-      'name': name,
-      'usrname': username,
-      'password': password,
-      'email': email,
-    };
-    return userInfo;
-  }
-
-  Map<String, dynamic> logIn() {
-    final Map<String, dynamic> userInfo = {
-      'username': username,
-      'password': password,
-    };
+    final Map<String, dynamic> userInfo = Map<String, dynamic>();
+    userInfo['name'] = name;
+    userInfo['username'] = username;
+    userInfo['email'] = email;
+    userInfo['password'] = password;
     return userInfo;
   }
 }

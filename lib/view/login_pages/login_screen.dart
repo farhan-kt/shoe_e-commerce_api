@@ -1,10 +1,14 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_e_commerce/controller/store_provider.dart';
 import 'package:shoe_e_commerce/controller/user_provider.dart';
-import 'package:shoe_e_commerce/view/sign_up_screen.dart';
+import 'package:shoe_e_commerce/model/user_model.dart';
+import 'package:shoe_e_commerce/view/login_pages/sign_up_screen.dart';
 import 'package:shoe_e_commerce/widget/bottom_bar.dart';
+import 'package:shoe_e_commerce/widget/normal_widgets.dart';
 import 'package:shoe_e_commerce/widget/textformfield_widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -49,12 +53,12 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           CustomTextFormField(
-                            controller: userProvider.usernamecontroller,
+                            controller: userProvider.usernameController,
                             labelText: 'enter username',
                           ),
                           const SizedBox(height: 10),
                           CustomTextFormField(
-                            controller: userProvider.passwordcontroller,
+                            controller: userProvider.passwordController,
                             labelText: 'enter password',
                             obscureText: true,
                           ),
@@ -64,12 +68,9 @@ class LoginScreen extends StatelessWidget {
                                 backgroundColor: Colors.yellow,
                               ),
                               onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => BottomBar()),
-                                    (route) => false);
-                                if (formKey.currentState!.validate()) {}
+                                if (formKey.currentState!.validate()) {
+                                  userLogin(context);
+                                }
                               },
                               child: const Text(
                                 'LOGIN',
@@ -112,5 +113,28 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  userLogin(context) async {
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
+    final getStore = Provider.of<StoreProvider>(context, listen: false);
+    final userInfo = UserModel(
+      username: getProvider.usernameController.text.toString(),
+      password: getProvider.passwordController.text.toString(),
+    );
+
+    try {
+      await getProvider.userLogin(userInfo);
+      final tokenId = await getStore.getValues('tokenId');
+      if (getProvider.userStatusCode == "200" && tokenId?.isNotEmpty == true) {
+        await getProvider.setUserData();
+        clearControllers(getProvider);
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => BottomBar()));
+      } else if (getProvider.userStatusCode == '500') {}
+    } catch (e) {
+      log('Error during user login: $e');
+    }
   }
 }
