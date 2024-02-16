@@ -25,7 +25,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             Expanded(
                 child: Lottie.asset('assets/Animation - login screen.json',
-                    fit: BoxFit.cover)),
+                    width: mediaQuery.width * 0.7,
+                    height: mediaQuery.height * 0.4)),
             Expanded(
                 child: Container(
               height: mediaQuery.height * 0.3,
@@ -69,7 +70,11 @@ class LoginScreen extends StatelessWidget {
                               ),
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  userLogin(context);
+                                  // userLogin(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BottomBar()));
                                 }
                               },
                               child: const Text(
