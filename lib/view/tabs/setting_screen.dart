@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoe_e_commerce/view/login_pages/login_screen.dart';
 import 'package:shoe_e_commerce/widget/settings_page_widget.dart';
@@ -12,7 +11,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color(0xFF202020),
+          backgroundColor: const Color(0xFF202020),
           title: textAbel(data: 'SETTINGS', size: 20, weight: FontWeight.bold)),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -22,14 +21,14 @@ class SettingScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Color(0xFF202020)),
-              child: Row(
+                  color: const Color(0xFF202020)),
+              child: const Row(
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('assets/shoe.jpg'),
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/profile.png'),
                     radius: 40,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 10,
                   ),
                   Column(

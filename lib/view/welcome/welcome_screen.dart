@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoe_e_commerce/view/login_pages/login_screen.dart';
 import 'package:shoe_e_commerce/widget/bottom_bar.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

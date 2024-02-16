@@ -141,7 +141,9 @@ class HomeScreen extends StatelessWidget {
                                   Text(
                                     product.category ?? 'Unknown',
                                     style: TextStyle(
-                                      color: Colors.grey[600],
+                                      color: product.category == 'men'
+                                          ? Colors.blue
+                                          : Colors.pink,
                                       fontSize: 12,
                                     ),
                                   ),
@@ -150,7 +152,7 @@ class HomeScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        product.price.toString(),
+                                        '₹ ${product.price.toString()}',
                                         style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -182,71 +184,59 @@ class HomeScreen extends StatelessWidget {
                         ),
                         itemCount: 10,
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ProductDetailScreen(),
+                          return Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Placeholder(
+                                  fallbackHeight: mediaQuery.height * 0.28,
+                                  child: Image.asset('assets/shoe.jpg'),
                                 ),
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Placeholder(
-                                    fallbackHeight: mediaQuery.height * 0.28,
-                                    child: Image.asset('assets/shoe.jpg'),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'title',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
                                   ),
-                                  const SizedBox(height: 10),
-                                  const Text(
-                                    'title',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
+                                ),
+                                Text(
+                                  'desc',
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 12,
                                   ),
-                                  Text(
-                                    'desc',
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'price',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
+                                ),
+                                const SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'price',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
                                       ),
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.favorite_outline,
-                                          color: Colors.black,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.favorite_outline,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
                           );
                         },

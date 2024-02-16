@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-                child: Lottie.asset('assets/Animation - login screen.json',
+                child: Lottie.asset('assets/login lottie.json',
                     width: mediaQuery.width * 0.7,
                     height: mediaQuery.height * 0.4)),
             Expanded(
