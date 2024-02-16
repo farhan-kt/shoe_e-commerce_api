@@ -8,10 +8,30 @@ void clearControllers(UserProvider controller) {
   controller.passwordController.clear();
 }
 
-Widget productDetails({String? hint, String? value}) {
+Widget productDescDetails({String? hint, String? value}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        hint!,
+        style: GoogleFonts.abel(
+            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+      ),
+      Text(
+        value!,
+        style: GoogleFonts.abel(
+            fontSize: 18,
+            fontWeight: FontWeight.w800,
+            color: Colors.yellow,
+            letterSpacing: 1),
+      ),
+    ],
+  );
+}
+
+Widget productsDetails({String? hint, String? value}) {
+  return Row(
     children: [
       Text(
         hint!,

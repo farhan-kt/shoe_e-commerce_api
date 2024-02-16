@@ -49,72 +49,19 @@ class ProductDetailScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Brand : ',
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      title,
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.yellow,
-                          letterSpacing: 5),
-                    ),
-                  ],
-                ),
+                productsDetails(hint: 'Brand :', value: title),
                 const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text(
-                      'Category : ',
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      category,
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.yellow,
-                          letterSpacing: 5),
-                    ),
-                  ],
-                ),
+                productsDetails(hint: 'Category :', value: category),
                 const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text(
-                      'Price : ₹',
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      price.toString(),
-                      style: GoogleFonts.abel(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.yellow,
-                          letterSpacing: 5),
-                    ),
-                  ],
-                ),
+                productsDetails(
+                    hint: 'Price : ', value: '₹ ${price.toString()}'),
                 const SizedBox(height: 20),
                 SizedBox(
                   height: mediaQuery.height * 0.25,
                   width: mediaQuery.width * double.infinity,
                   child: Card(
                       elevation: 5,
-                      child: productDetails(
+                      child: productDescDetails(
                           hint: 'Description :', value: description)),
                 ),
               ],

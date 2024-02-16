@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/bottom_bar_provider.dart';
 import 'package:shoe_e_commerce/controller/home_provider.dart';
 import 'package:shoe_e_commerce/controller/product_provider.dart';
+import 'package:shoe_e_commerce/controller/search_provider.dart';
 import 'package:shoe_e_commerce/controller/store_provider.dart';
 import 'package:shoe_e_commerce/controller/user_provider.dart';
-import 'package:shoe_e_commerce/view/welcome/welcome_screen.dart';
 import 'package:shoe_e_commerce/widget/bottom_bar.dart';
 
 void main() {
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => BottomProvider()),
         ChangeNotifierProvider(create: (context) => HomeProvider()),
-        ChangeNotifierProvider(create: (context) => ProductProvider())
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

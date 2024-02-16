@@ -52,7 +52,7 @@ class UserService {
       }
     } catch (e) {
       log("$e");
-      throw e;
+      rethrow;
     }
   }
 }

@@ -8,11 +8,6 @@ class SearchProvider extends ChangeNotifier {
   ProductService productService = ProductService();
   TextEditingController searchController = TextEditingController();
   List<ProductModel> searchedList = [];
-  loadProducts() async {
-    final allData = await productService.getData();
-    searchedList = allData;
-    notifyListeners();
-  }
 
   search(String enterName, context) {
     final getProductProvider =
