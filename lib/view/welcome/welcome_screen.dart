@@ -16,8 +16,8 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-              child:
-                  Lottie.asset('assets/splash screen.json', fit: BoxFit.cover)),
+              child: Lottie.asset('assets/welcome screen.json',
+                  fit: BoxFit.cover)),
           Expanded(
               child: Column(
             children: <Widget>[

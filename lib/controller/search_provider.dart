@@ -9,11 +9,11 @@ class SearchProvider extends ChangeNotifier {
   TextEditingController searchController = TextEditingController();
   List<ProductModel> searchedList = [];
 
-  search(String enterName, context) {
+  void search(String enterName, context) {
     final getProductProvider =
         Provider.of<ProductProvider>(context, listen: false);
     if (enterName.isEmpty) {
-      searchedList = [...getProductProvider.productList];
+      searchedList = [];
     } else {
       searchedList = getProductProvider.productList
           .where((ProductModel product) =>

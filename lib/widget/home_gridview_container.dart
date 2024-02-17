@@ -1,11 +1,18 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_e_commerce/controller/store_provider.dart';
+import 'package:shoe_e_commerce/controller/wishlist_provider.dart';
 
 class ProductContainer extends StatelessWidget {
   final product;
+  final productId;
 
-  const ProductContainer({Key? key, required this.product}) : super(key: key);
+  const ProductContainer({Key? key, this.product, this.productId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +67,9 @@ class ProductContainer extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  toWishList(context, productId);
+                },
                 icon: const Icon(
                   Icons.favorite_outline,
                   color: Colors.black,
@@ -71,5 +80,23 @@ class ProductContainer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future toWishList(context, product) async {
+    final store = Provider.of<StoreProvider>(context, listen: false);
+    final userId = await store.getValues('userId');
+    final token = await store.getValues('tokenId');
+    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+
+    if (userId != null && token != null) {
+      wishProvider.addToWishList(product, userId, token);
+      if (wishProvider.wishListStatuscode == '200') {
+        log("Product added to Wishlist");
+      } else if (wishProvider.wishListStatuscode == '500') {
+        log('Product already in wishlist');
+      }
+    } else {
+      log('Your are not loged in ');
+    }
   }
 }

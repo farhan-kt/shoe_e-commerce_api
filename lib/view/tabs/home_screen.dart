@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/product_provider.dart';
 import 'package:shoe_e_commerce/controller/search_provider.dart';
+import 'package:shoe_e_commerce/model/wishlist_model.dart';
 import 'package:shoe_e_commerce/view/pages/cart_screen.dart';
 import 'package:shoe_e_commerce/view/pages/product_detail.dart';
 import 'package:shoe_e_commerce/widget/home_gridview_container.dart';
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final serachPrvd = Provider.of<SearchProvider>(context, listen: false);
+    final searchProvider = Provider.of<SearchProvider>(context, listen: false);
     Provider.of<ProductProvider>(context, listen: false).getData();
     Size mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
@@ -28,9 +29,9 @@ class HomeScreen extends StatelessWidget {
               Row(
                 children: [
                   searchTextFormField(
-                      onChanged: (value) => serachPrvd.search(
-                          serachPrvd.searchController.text, context),
-                      controller: serachPrvd.searchController),
+                      onChanged: (value) => searchProvider.search(
+                          searchProvider.searchController.text, context),
+                      controller: searchProvider.searchController),
                   const SizedBox(width: 10),
                   cartIconContainer(
                     onPressed: () {
@@ -50,7 +51,14 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: Consumer2<SearchProvider, ProductProvider>(
                   builder: (context, searchValue, productValue, child) {
-                    if (searchValue.searchedList.isEmpty) {
+                    if (searchValue.searchedList.isEmpty &&
+                        searchProvider.searchController.text.isNotEmpty) {
+                      return Center(
+                          child: textAbel(
+                              data: 'NO ITEMS FOUND',
+                              size: 20,
+                              weight: FontWeight.w700));
+                    } else if (searchValue.searchedList.isEmpty) {
                       if (productValue.productList.isNotEmpty) {
                         final allProducts = productValue.productList;
                         return GridView.builder(
@@ -58,7 +66,9 @@ class HomeScreen extends StatelessWidget {
                           itemCount: allProducts.length,
                           itemBuilder: (context, index) {
                             final product = allProducts[index];
-
+                            final wishProduct = WishListModel(
+                              id: product.id,
+                            );
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -74,12 +84,19 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: ProductContainer(product: product),
+                              child: ProductContainer(
+                                product: product,
+                                productId: wishProduct,
+                              ),
                             );
                           },
                         );
                       } else {
-                        return gridViewHome(context);
+                        return Center(
+                            child: textAbel(
+                                data: 'NO ITEMS ADDED',
+                                size: 20,
+                                weight: FontWeight.w700));
                       }
                     } else {
                       return GridView.builder(

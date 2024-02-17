@@ -9,7 +9,7 @@ class UserService {
   Dio dio = Dio();
   StoreService store = StoreService();
 
-  createUser(UserModel userInfo) async {
+  Future<void> createUser(UserModel userInfo) async {
     const url = 'http://localhost:3000/api/users/register';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
@@ -27,7 +27,7 @@ class UserService {
     }
   }
 
-  userLogin(UserModel userInfo) async {
+  Future<bool> userLogin(UserModel userInfo) async {
     const url = 'http://localhost:3000/api/users/login';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
@@ -36,9 +36,9 @@ class UserService {
       if (response.statusCode == 200) {
         log('User Logged in');
         final tokenId = response.data['token'];
-        final userId = response.data['user']['_id'];
-        final username = response.data['user']['username'];
-        final password = response.data['user']['password'];
+        final userId = response.data['data']['user']['_id'];
+        final username = response.data['data']['user']['username'];
+        final password = response.data['data']['user']['password'];
 
         store.setKeys('tokenId', tokenId);
         store.setKeys('userId', userId);

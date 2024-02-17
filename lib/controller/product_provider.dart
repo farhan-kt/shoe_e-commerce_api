@@ -6,7 +6,7 @@ class ProductProvider extends ChangeNotifier {
   ProductService apiService = ProductService();
   List<ProductModel> productList = [];
 
-  getData() async {
+ void getData() async {
     try {
       productList = await apiService.getData();
       notifyListeners();

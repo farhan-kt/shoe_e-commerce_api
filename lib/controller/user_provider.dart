@@ -18,19 +18,19 @@ class UserProvider extends ChangeNotifier {
   String username = '';
   String password = '';
 
-  createUser(UserModel userInfo) async {
+  Future<void> createUser(UserModel userInfo) async {
     await _userService.createUser(userInfo);
     createdStatusCode = _userService.createdStatusCode;
     notifyListeners();
   }
 
-  userLogin(UserModel userInfo) async {
+  Future<void> userLogin(UserModel userInfo) async {
     await _userService.userLogin(userInfo);
     userStatusCode = _userService.userStatusCode;
     notifyListeners();
   }
 
-  setUserData() async {
+  Future<void> setUserData() async {
     username = await _storeService.getValues('username') ?? '';
     password = await _storeService.getValues('password') ?? '';
     notifyListeners();

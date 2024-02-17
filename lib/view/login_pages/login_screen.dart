@@ -70,11 +70,11 @@ class LoginScreen extends StatelessWidget {
                               ),
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  // userLogin(context);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BottomBar()));
+                                  userLogin(context);
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => BottomBar()));
                                 }
                               },
                               child: const Text(
@@ -121,23 +121,24 @@ class LoginScreen extends StatelessWidget {
   }
 
   userLogin(context) async {
-    final getProvider = Provider.of<UserProvider>(context, listen: false);
-    final getStore = Provider.of<StoreProvider>(context, listen: false);
+    final getUserProvider = Provider.of<UserProvider>(context, listen: false);
+    final getStoreProvider = Provider.of<StoreProvider>(context, listen: false);
     final userInfo = UserModel(
-      username: getProvider.usernameController.text.toString(),
-      password: getProvider.passwordController.text.toString(),
+      username: getUserProvider.usernameController.text.toString(),
+      password: getUserProvider.passwordController.text.toString(),
     );
 
     try {
-      await getProvider.userLogin(userInfo);
-      final tokenId = await getStore.getValues('tokenId');
-      if (getProvider.userStatusCode == "200" && tokenId?.isNotEmpty == true) {
-        await getProvider.setUserData();
-        clearControllers(getProvider);
+      await getUserProvider.userLogin(userInfo);
+      final tokenId = await getStoreProvider.getValues('tokenId');
+      if (getUserProvider.userStatusCode == "200" &&
+          tokenId?.isNotEmpty == true) {
+        await getUserProvider.setUserData();
+        clearControllers(getUserProvider);
 
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => BottomBar()));
-      } else if (getProvider.userStatusCode == '500') {}
+      } else if (getUserProvider.userStatusCode == '500') {}
     } catch (e) {
       log('Error during user login: $e');
     }
