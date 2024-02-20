@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_e_commerce/controller/product_provider.dart';
 import 'package:shoe_e_commerce/controller/search_provider.dart';
@@ -54,10 +55,8 @@ class HomeScreen extends StatelessWidget {
                     if (searchValue.searchedList.isEmpty &&
                         searchProvider.searchController.text.isNotEmpty) {
                       return Center(
-                          child: textAbel(
-                              data: 'NO ITEMS FOUND',
-                              size: 20,
-                              weight: FontWeight.w700));
+                          child: Lottie.asset(
+                              'assets/Animation - empty search item.json'));
                     } else if (searchValue.searchedList.isEmpty) {
                       if (productValue.productList.isNotEmpty) {
                         final allProducts = productValue.productList;

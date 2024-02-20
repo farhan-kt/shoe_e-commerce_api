@@ -21,4 +21,10 @@ class WishListProvider extends ChangeNotifier {
         await _wishListService.getWishListProduct(product, userId, token);
     notifyListeners();
   }
+
+  Future<void> deleteFromWishList(
+      String productId, String userId, String token) async {
+    await _wishListService.deleteFromWishList(productId, userId, token);
+    notifyListeners();
+  }
 }

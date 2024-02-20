@@ -51,8 +51,31 @@ class WishListService {
         throw Exception('Failed to fetch wishlist');
       }
     } catch (e) {
-      // log('Error: $e');
       rethrow;
+    }
+  }
+
+  deleteFromWishList(String productId, String userId, String token) async {
+    final url = 'http://localhost:3000/api/users/$userId/wishlist';
+
+    try {
+      Response response = await dio.delete(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        log('Product deleted from WishList');
+      } else if (response.statusCode == 500) {
+        log('Unsuccessful. Status code: ${response.statusCode}');
+        log('Response data: ${response.data}');
+      }
+    } catch (e) {
+      log('Error deleting product from WishList: $e');
     }
   }
 }
